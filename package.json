@@ -1,0 +1,22 @@
+{
+  "name": "agendaWeb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "boostrap": "^2.0.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
+    "toastr": "^2.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  },
+  "scripts": {
+    "start": "node src/app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

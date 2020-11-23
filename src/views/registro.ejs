@@ -1,0 +1,28 @@
+<%- include('partials/_header.ejs')  %>
+<div id="data-row" class="row justify-content-center align-items-center">
+    <div id="data-column" class="col-md-6">
+        <div id="data-box" class="col-md-12">
+            <form id="data-form" class="form" action="/guardar" method="POST">
+                <h3 class="text-center text-info">Agregar Contacto</h3>
+                <div class="form-group">
+                    <label for="nombre" class="text-info">Nombre:</label><br>
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="contrasena" class="text-info">Contraseña:</label><br>
+                    <input type="text" name="contrasena" id="contrasena" class="form-control">
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btn btn-info btn-md" value="Agregar">
+                </div>
+                <div id="register-link" class="text-right">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<form action="/">
+    <input type="submit" value="Cerrar sesion" class="btn btn-info btn-md"/>
+</form>
+
+<%- include('partials/_footer.ejs')  %>

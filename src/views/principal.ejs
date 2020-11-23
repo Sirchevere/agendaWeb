@@ -1,0 +1,140 @@
+<%- include('partials/_header.ejs')  %>
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (urlParams.has('error')) {
+        toastr["error"]("", "Error no se a agregado el contacto")
+    }
+    if (urlParams.has('correcto')) {
+        toastr["success"](" ", "Contacto agregado exitosamente")
+    }
+
+    if (urlParams.has('editado')) {
+        toastr["success"](" ", "Se edito correctamente el contacto")
+    }
+</script>
+
+<div id="data-row" class="row justify-content-center align-items-center">
+    <div id="data-column" class="col-md-6">
+        <div id="data-box" class="col-md-12">
+            <form id="data-form" class="form" action="/guardarContacto" method="POST">
+                <h3 class="text-center text-info">Agregar Contacto</h3>
+                <div class="form-group">
+                    <label for="nombre" class="text-info">Nombre:</label><br>
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="puesto" class="text-info">Puesto:</label><br>
+                    <input type="text" name="puesto" id="puesto" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="organizacion" class="text-info">Organizacion:</label><br>
+                    <input type="text" name="organizacion" id="organizacion" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="telefono" class="text-info">Telefono:</label><br>
+                    <input type="text" name="telefono" id="telefono" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email" class="text-info">Email:</label><br>
+                    <input type="text" name="email" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="horario" class="text-info">Horario:</label><br>
+                    <input type="text" name="horario" id="horario" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="direccion" class="text-info">Direccion:</label><br>
+                    <input type="text" name="direccion" id="direccion" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="notas" class="text-info">Notas:</label><br>
+                    <input type="text" name="notas" id="notas" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btn btn-info btn-md" value="Agregar" id="agregarn">
+                </div>
+                <div id="register-link" class="text-right">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<form action="/">
+    <input type="submit" value="Cerrar sesion" class="btn btn-info btn-md" />
+</form>
+
+<table class="table">
+    <thead class="thead-dark">
+        <th scope="col">Nombre</th>
+        <th scope="col">Puesto</th>
+        <th scope="col">Organizacion</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Email</th>
+        <th scope="col">Horario</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Notas</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Eliminar</th>
+    </thead>
+    <tbody class="user-waitlist">
+        <%
+        
+            if(conts){
+
+                conts.forEach(contactos=>{ 
+        %>
+        
+        <tr>
+            <form action="/editar/<%= contactos._id %>" method="POST">
+            <th scope="row"><input type="text" name="nombreEd" id="nombreEd" class="form-control"value=<%= contactos.nombre %>></th>
+            <th scope="row"><input type="text" name="puestoEd" id="puestoEd" class="form-control"value=<%= contactos.puesto %>></th>
+            <th scope="row"><input type="text" name="organizacionEd" id="organizacionEd" class="form-control"value=<%= contactos.organizacion %>></th>
+            <th scope="row"><input type="text" name="telefonoEd" id="telefonoEd" class="form-control"value=<%= contactos.telefono %>></th>
+            <th scope="row"><input type="text" name="emailEd" id="emailEd" class="form-control"value=<%= contactos.email %>></th>
+            <th scope="row"><input type="text" name="horarioEd" id="horarioEd" class="form-control"value=<%= contactos.horario %>></th>
+            <th scope="row"><input type="text" name="direccionEd" id="direccionEd" class="form-control"value=<%= contactos.direccion %>></th>
+            <th scope="row"><input type="text" name="notasEd" id="notasEd" class="form-control"value=<%= contactos.notas %>></th>
+
+
+
+            <td>
+                <input type="submit" name="submit" class="btn btn-info btn-md" value="Editar" id="agregarn">
+                    <i class="fas fa-user-check"></i>
+                </a>
+            </form>
+            </td>
+            <td>
+                <a href="/reject/<%= contactos._id %>" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Eliminar
+                    <i class="fas fa-times"></i>
+                </a>
+            </td>
+        </tr>
+
+        <%
+                    
+                })
+
+            }
+        
+        %>
+
+
+
+    </tbody>
+</table>
+
+
+
+<script>
+    const abrir = document.querySelector('#agregarn')
+    abrir.addEventListener('click', () => {
+        toastr.info('Se a agregado un nuevo contacto')
+
+    })
+
+
+</script>
+<%- include('partials/_footer.ejs')  %>
