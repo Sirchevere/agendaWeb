@@ -13,8 +13,13 @@
     if (urlParams.has('editado')) {
         toastr["success"](" ", "Se edito correctamente el contacto")
     }
+    if (urlParams.has('borrar')) {
+        toastr["success"](" ", "Se a borrado correctamente el contacto")
+    }
 </script>
-
+<form action="/">
+    <input type="submit" value="Cerrar sesion" class="btn btn-info btn-md" style="float: right;" />
+</form>
 <div id="data-row" class="row justify-content-center align-items-center">
     <div id="data-column" class="col-md-6">
         <div id="data-box" class="col-md-12">
@@ -62,9 +67,7 @@
     </div>
 </div>
 
-<form action="/">
-    <input type="submit" value="Cerrar sesion" class="btn btn-info btn-md" />
-</form>
+
 
 <table class="table">
     <thead class="thead-dark">
@@ -107,8 +110,10 @@
             </form>
             </td>
             <td>
-                <a href="/reject/<%= contactos._id %>" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Eliminar
-                    <i class="fas fa-times"></i>
+                <form action="/borrar/<%= contactos._id %>" method="POST">
+                    <input type="submit" name="submit" class="btn btn-danger" value="Borrar" id="borarn">
+                        <i class="fas fa-times"></i>
+                </form>
                 </a>
             </td>
         </tr>

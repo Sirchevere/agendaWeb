@@ -55,4 +55,18 @@ controller.editar = (req, res)=>{
         })
     });
 }
+
+
+controller.borrar = (req, res)=>{
+    
+    Contacto.findByIdAndDelete({_id: req.params.id }, (err, contacto)=>{
+        if(err) console.log(err);
+        //Modificar el usuario
+
+        contacto.save((err,contactosaved)=>{
+            if(err) console.log(err);
+            res.redirect('/principal?borrar');
+        })
+    });
+}
 module.exports = controller;

@@ -12,6 +12,7 @@ router.post('/guardar',homeController.save);
 router.get('/registro',homeController.registro);
 router.post('/guardarContacto',contactoController.save);
 router.post('/editar/:id',contactoController.editar);
+router.post('/borrar/:id',contactoController.borrar);
 
 
 module.exports = router;
